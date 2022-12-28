@@ -800,7 +800,9 @@ ble_hci_sock_init_task(void)
 void
 ble_hci_sock_set_device(int dev)
 {
+#if MYNEWT_VAL(BLE_SOCK_USE_TCP) || MYNEWT_VAL(BLE_SOCK_USE_LINUX_BLUE) || MYNEWT_VAL(BLE_SOCK_USE_NUTTX)
     s_ble_hci_device = dev;
+#endif
 }
 
 /**

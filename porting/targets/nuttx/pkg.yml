@@ -38,3 +38,4 @@ pkg.deps:
 - "@apache-mynewt-nimble/nimble/host/services/ipss"
 - "@apache-mynewt-nimble/nimble/host/services/lls"
 - "@apache-mynewt-nimble/nimble/host/services/tps"
+- "@apache-mynewt-nimble/nimble/drivers/nrf51"

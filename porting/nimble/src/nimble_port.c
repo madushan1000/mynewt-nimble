@@ -46,7 +46,7 @@ nimble_port_init(void)
     ble_transport_hs_init();
 
 #if NIMBLE_CFG_CONTROLLER
-#ifndef RIOT_VERSION
+#if !defined(RIOT_VERSION) && !defined(NIMBLE_CFG_BL602)
     hal_timer_init(5, NULL);
     os_cputime_init(32768);
 #endif

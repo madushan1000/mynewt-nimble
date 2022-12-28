@@ -48,12 +48,12 @@ void ble_store_ram_init(void);
 #define TASK_DEFAULT_STACK          NULL
 #define TASK_DEFAULT_STACK_SIZE     400
 
-void *ble_hci_sock_task(void *param)
-{
-    printf("hci sock task\n");
-    ble_hci_sock_ack_handler(param);
-    return NULL;
-}
+// void *ble_hci_sock_task(void *param)
+// {
+//     printf("hci sock task\n");
+//     ble_hci_sock_ack_handler(param);
+//     return NULL;
+// }
 
 void *ble_host_task(void *param)
 {
@@ -66,16 +66,16 @@ int main(int argc, char *argv[])
 {
     int ret = 0;
 
-    /* allow to specify custom hci */
-    if (argc > 1) {
-        ble_hci_sock_set_device(atoi(argv[1]));
-    }
+    // /* allow to specify custom hci */
+    // if (argc > 1) {
+    //     ble_hci_sock_set_device(atoi(argv[1]));
+    // }
 
     printf("port init\n");
     nimble_port_init();
 
-    printf("hci init\n");
-    ble_hci_sock_init();
+    //printf("hci init\n");
+    //ble_hci_sock_init();
 
     /* This example provides GATT Alert service */
     printf("gap init\n");
@@ -94,15 +94,15 @@ int main(int argc, char *argv[])
     /* XXX Need to have template for store */
     ble_store_ram_init();
 
-    printf("hci_sock task init\n");
-    ret = ble_npl_task_init(&s_task_hci, "hci_sock", ble_hci_sock_task,
-                      NULL, TASK_DEFAULT_PRIORITY, BLE_NPL_TIME_FOREVER,
-                      TASK_DEFAULT_STACK, TASK_DEFAULT_STACK_SIZE);
+    // printf("hci_sock task init\n");
+    // ret = ble_npl_task_init(&s_task_hci, "hci_sock", ble_hci_sock_task,
+    //                   NULL, TASK_DEFAULT_PRIORITY, BLE_NPL_TIME_FOREVER,
+    //                   TASK_DEFAULT_STACK, TASK_DEFAULT_STACK_SIZE);
 
-    if (ret != 0)
-      {
-        fprintf(stderr, "error starting hci task: %i\n", ret);
-      }
+    // if (ret != 0)
+    //   {
+    //     fprintf(stderr, "error starting hci task: %i\n", ret);
+    //   }
 
     /* Create task which handles default event queue for host stack. */
     printf("ble_host task init\n");

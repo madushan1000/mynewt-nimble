@@ -20,8 +20,8 @@ NIMBLE_CFG_TINYCRYPT := 1
 
 # Skip files that don't build for this port
 NIMBLE_IGNORE := $(NIMBLE_ROOT)/porting/nimble/src/hal_timer.c \
-	$(NIMBLE_ROOT)/porting/nimble/src/os_cputime.c \
-	$(NIMBLE_ROOT)/porting/nimble/src/os_cputime_pwr2.c
+	# $(NIMBLE_ROOT)/porting/nimble/src/os_cputime.c \
+	# $(NIMBLE_ROOT)/porting/nimble/src/os_cputime_pwr2.c
 
 include $(NIMBLE_ROOT)/porting/nimble/Makefile.defs
 
@@ -30,11 +30,11 @@ CSRCS := $(NIMBLE_SRC)
 # Source files for NPL OSAL
 CSRCS += \
 	$(wildcard $(NIMBLE_ROOT)/porting/npl/nuttx/src/*.c) \
-	$(wildcard $(NIMBLE_ROOT)/nimble/transport/socket/src/*.c) \
 	$(TINYCRYPT_SRC)
 
 # Source files for demo app
 CSRCS += $(NIMBLE_ROOT)/porting/examples/nuttx/ble.c
+CSRCS += $(NIMBLE_ROOT)/porting/examples/nuttx/nuttx_timer.c
 
 MAINSRC = $(NIMBLE_ROOT)/porting/examples/nuttx/main.c
 
@@ -42,7 +42,6 @@ MAINSRC = $(NIMBLE_ROOT)/porting/examples/nuttx/main.c
 INC = \
   $(wildcard $(NIMBLE_ROOT)/porting/examples/nuttx/include) \
 	$(NIMBLE_ROOT)/porting/npl/nuttx/include \
-	$(NIMBLE_ROOT)/nimble/transport/socket/include \
 	$(NIMBLE_INCLUDE) \
 	$(TINYCRYPT_INCLUDE)
 
@@ -52,7 +51,7 @@ CFLAGS +=                    \
     $(NIMBLE_CFLAGS)        \
     $(INCLUDES)             \
     $(TINYCRYPT_CFLAGS)     \
-    -DNIMBLE_CFG_CONTROLLER=0 -DOS_CFG_ALIGN_4=4 -DOS_CFG_ALIGNMENT=4 \
+    -DNIMBLE_CFG_CONTROLLER=1 -DOS_CFG_ALIGN_4=4 -DOS_CFG_ALIGNMENT=4 \
     -Ddefault_RNG_defined=0
 
 PROGNAME=nimble

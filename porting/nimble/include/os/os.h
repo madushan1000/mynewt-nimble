@@ -29,6 +29,14 @@ extern "C" {
 #include "syscfg/syscfg.h"
 #include "nimble/nimble_npl.h"
 
+#ifndef min
+#define min(a, b) ((a) < (b) ? (a) : (b))
+#endif
+
+#ifndef max
+#define max(a, b) ((a) > (b) ? (a) : (b))
+#endif
+
 #define OS_ALIGN(__n, __a) (                             \
         (((__n) & ((__a) - 1)) == 0)                   ? \
             (__n)                                      : \
@@ -47,6 +55,7 @@ typedef uint32_t os_sr_t;
 #include "os/os_error.h"
 #include "os/os_mbuf.h"
 #include "os/os_mempool.h"
+#include "os/util.h"
 
 #ifdef __cplusplus
 }

@@ -134,6 +134,24 @@ ble_ll_rand_data_get(uint8_t *buf, uint8_t len)
     return BLE_ERR_SUCCESS;
 }
 
+long jrand48(unsigned short xsubi[3])
+{
+	uint64_t x;
+
+	/* The xsubi[] array is littleendian by spec */
+	x = (uint64_t) (uint16_t) xsubi[0] +
+	    ((uint64_t) (uint16_t) xsubi[1] << 16) +
+	    ((uint64_t) (uint16_t) xsubi[2] << 32);
+
+	x = (0x5deece66dULL * x) + 0xb;
+
+	xsubi[0] = (unsigned short)(uint16_t) x;
+	xsubi[1] = (unsigned short)(uint16_t) (x >> 16);
+	xsubi[2] = (unsigned short)(uint16_t) (x >> 32);
+
+	return (long)(int32_t) (x >> 16);
+}
+
 /* Simple wrapper to allow easy replacement of rand() */
 uint32_t
 ble_ll_rand(void)

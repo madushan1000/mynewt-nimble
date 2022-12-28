@@ -17,16 +17,18 @@
 
 NIMBLE_CFLAGS += \
 	-DNIMBLE_CFG_CONTROLLER=1 \
+	-DNIMBLE_CFG_BL602=1 \
 
 NIMBLE_INCLUDE += \
 	$(NIMBLE_ROOT)/nimble/transport/ram/include \
 	$(NIMBLE_ROOT)/nimble/controller/include \
-	$(NIMBLE_ROOT)/nimble/drivers/nrf52/include \
+	$(NIMBLE_ROOT)/nimble/drivers/bl602/include \
+	$(NIMBLE_ROOT)/porting/nimble/include \
 	$(NULL)
 
 NIMBLE_SRC += \
 	$(filter-out $(NIMBLE_IGNORE), $(wildcard $(NIMBLE_ROOT)/nimble/transport/ram/src/*.c)) \
 	$(filter-out $(NIMBLE_IGNORE), $(wildcard $(NIMBLE_ROOT)/nimble/controller/src/*.c)) \
-	$(filter-out $(NIMBLE_IGNORE), $(wildcard $(NIMBLE_ROOT)/nimble/drivers/nrf52/src/*.c)) \
+	$(filter-out $(NIMBLE_IGNORE), $(wildcard $(NIMBLE_ROOT)/nimble/drivers/bl602/src/*.c)) \
 	$(filter-out $(NIMBLE_IGNORE), $(wildcard $(NIMBLE_ROOT)/porting/nimble/controller/src/*.c)) \
 	$(NULL)
